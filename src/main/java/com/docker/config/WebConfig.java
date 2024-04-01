@@ -21,17 +21,21 @@ protected void configure(AuthenticationManagerBuilder build) {
 }
 @Override
 protected void configure(HttpSecurity http) throws Exception {
-	// TODO Auto-generated method stub
-	http.csrf().disable()
-	.authorizeRequests()
-	.antMatchers("/admin/**")
-	.hasRole("ADMIN")
-	.antMatchers("/manager/**")
-	.hasRole("MANAGER")
-	.antMatchers("/user/**")
-	.hasRole("USER")
-	.and().formLogin().loginPage("/login").permitAll()
-	.successForwardUrl("/loginSuccess");
-	;
+    http
+        .csrf().disable()
+        .authorizeRequests()
+            .antMatchers("/admin/**").hasRole("ADMIN")
+            .antMatchers("/manager/**").hasRole("MANAGER")
+            .antMatchers("/user/**").hasRole("USER")
+            .anyRequest().authenticated()
+            .and()
+        .formLogin()
+            .loginPage("/login")
+            .permitAll()
+            .successForwardUrl("/loginSuccess")
+            .and()
+        .logout()
+            .permitAll();
 }
+
 }
