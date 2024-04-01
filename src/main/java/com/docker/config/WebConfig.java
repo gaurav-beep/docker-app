@@ -27,6 +27,7 @@ protected void configure(HttpSecurity http) throws Exception {
             .antMatchers("/admin/**").hasRole("ADMIN")
             .antMatchers("/manager/**").hasRole("MANAGER")
             .antMatchers("/user/**").hasRole("USER")
+            .antMatchers("/register", "/forget","/m/**").permitAll()
             .anyRequest().authenticated()
             .and()
         .formLogin()

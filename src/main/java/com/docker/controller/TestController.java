@@ -1,8 +1,11 @@
 package com.docker.controller;
 
-import java.security.SecureRandom;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,11 +73,35 @@ public ModelAndView register() {
 	ModelAndView modelAndView = new ModelAndView("register");
 	return modelAndView;
 }
-@RequestMapping({ "/registerUser" })
+@RequestMapping({ "/forget" })
+public ModelAndView forget() {
+	ModelAndView modelAndView = new ModelAndView("forget");
+	return modelAndView;
+}
+@PostMapping("/m/checkUserName")
+public ResponseEntity<Map<String,String>> checkUserName(@RequestBody UserModel userModel){
+    Map<String,String> response = new HashMap<>();
+    try {
+        UserModel user = userRepository.findById(userModel.getUsername()).orElse(null);
+        if (user != null) {
+            response.put("status", "success");
+        } else {
+            response.put("status", "error");
+        }
+        return ResponseEntity.ok(response);
+    } catch (Exception e) {
+        response.put("status", "error");
+        response.put("message", "An error occurred: " + e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+}
+
+@RequestMapping({ "/registerUser"})
 public RedirectView  registerUser(@ModelAttribute UserModel user) {
-	 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-	 String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-	 user.setPassword(encodedPassword);
+	System.out.println("user : "+user);
+	BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+	String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+	user.setPassword(encodedPassword);
 	user.setRoles("ROLE_USER");
 	userRepository.save(user);
 	RedirectView view = new RedirectView();

@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class UserModel {
 @Id
-@Column(name="username")
+@Column(name="username", unique = true)
 private String username;
 
 @Column(name="password")

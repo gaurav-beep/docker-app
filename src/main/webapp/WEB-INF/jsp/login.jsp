@@ -41,9 +41,10 @@
 								path="password" placeholder="Enter password" required>
 						</div>
 					</div>
-					<div class="modal-footer ">
-						<a href="/docker-app/register"  class="btn btn-primary float-right">Register</a>
-						<button type="submit" class="btn btn-primary float-left">Submit</button>
+					<div class="modal-footer">
+						<a href="/docker-app/forget"  class="btn btn-info">Forget Password</a>
+						<a href="/docker-app/register"  class="btn btn-primary">Register</a>
+						<button type="submit" class="btn btn-success">Submit</button>
 					</div>
 				</form>
 			</div>
