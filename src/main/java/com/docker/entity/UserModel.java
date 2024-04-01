@@ -18,4 +18,7 @@ private String password;
 
 @Column(name="roles")
 private String roles;
+
+@Column(name="email")
+private String email;
 }

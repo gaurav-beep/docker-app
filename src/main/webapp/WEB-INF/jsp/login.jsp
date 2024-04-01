@@ -42,8 +42,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<a href="/docker-app/forget"  class="btn btn-info">Forget Password</a>
-						<a href="/docker-app/register"  class="btn btn-primary">Register</a>
+						<a href="/docker-app/m/forgetPasswordForm"  class="btn btn-info">Forget Password</a>
+						<a href="/docker-app/m/registerUserForm"  class="btn btn-primary">Register</a>
 						<button type="submit" class="btn btn-success">Submit</button>
 					</div>
 				</form>
