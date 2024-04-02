@@ -9,14 +9,11 @@
 </head>
 <body>
 <jsp:include page="jscss.jsp"></jsp:include>
-<c:if test="${error ne null}">
-<div class="alert alert-danger" role="alert">
-  ${error}
-</div>
-</c:if>
 <div class="modal bg-muted d-block" id="myModal" role="dialog" >
 		<div class="modal-dialog">
-
+			<c:if test="${error ne null}">
+				<div class="alert alert-danger" role="alert">${error}</div>
+			</c:if>
 			<!-- Modal content-->
 
 			<div class="modal-content">
