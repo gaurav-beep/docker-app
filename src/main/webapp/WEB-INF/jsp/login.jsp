@@ -31,22 +31,24 @@
 							<label for="username">User Name</label> <input type="text"
 								class="form-control" id="username" name="username"
 								path="username" placeholder="Enter User Name" required>
+								<p id="username-error" class="text-danger" style="font-size:small;"></p>
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label> <input type="password"
 								class="form-control" id="password" name="password"
-								path="password" placeholder="Enter password" required>
+								path="password" placeholder="Enter password" required disabled="true">
+								<p id="password-error" class="text-danger" style="font-size:small;"></p>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<a href="/docker-app/m/forgetPasswordForm"  class="btn btn-info">Forget Password</a>
-						<a href="/docker-app/m/registerUserForm"  class="btn btn-primary">Register</a>
-						<button type="submit" class="btn btn-success">Submit</button>
+						<a href="/docker-app/forget/form"  class="btn btn-info">Forget Password</a>
+						<a href="/docker-app/register/form"  class="btn btn-primary">Register</a>
+						<button id="loginSubmit"  type="submit" class="btn btn-success" disabled="true">Submit</button>
 					</div>
 				</form>
 			</div>
-
 		</div>
 	</div>
+	<script src="${pageContext.request.contextPath}/static/js/login.js"></script>
 </body>
 </html>

@@ -36,7 +36,6 @@ public class TestController {
 	UserRepository userRepository;
 	
 	@GetMapping("/m/test")
-	
 	public String test() {
 		return "test";
 	}
@@ -73,13 +72,13 @@ public class TestController {
 	    return modelAndView;
 	}
 	
-	@RequestMapping({ "/m/registerUserForm" })
+	@RequestMapping({ "/register/form" })
 	public ModelAndView register() {
 		ModelAndView modelAndView = new ModelAndView("register");
 		return modelAndView;
 	}
 	
-	@RequestMapping({ "/m/forgetPasswordForm" })
+	@RequestMapping({ "/forget/form" })
 	public ModelAndView forget() {
 		ModelAndView modelAndView = new ModelAndView("forget");
 		return modelAndView;
@@ -87,7 +86,7 @@ public class TestController {
 	
 	@PostMapping("/m/checkUserName")
 	public ResponseEntity<Map<String,String>> checkUserName(@RequestBody UserModel userModel){
-	    Map<String,String> response = new HashMap<>();
+	    Map<String,String> response = new HashMap<String, String>();
 	    try {
 	        UserModel user = userRepository.findById(userModel.getUsername()).orElse(null);
 	        if (user != null) {
@@ -103,7 +102,29 @@ public class TestController {
 	    }
 	}
 	
-	@RequestMapping({"/m/registerUser","/m/forgetPassword"})
+	@PostMapping("/m/checkPassword")
+	public ResponseEntity<Map<String,String>> checkPassword(@RequestBody UserModel userModel){
+	    Map<String,String> response = new HashMap<String, String>();
+	    try {
+	        UserModel user = userRepository.findById(userModel.getUsername()).orElse(null);
+	        if (user != null) {
+		        if (new BCryptPasswordEncoder().matches(userModel.getPassword(),user.getPassword())) {
+		        	response.put("status", "success");
+		        } else {
+		        	response.put("status", "error");
+		        }
+	        } else {
+	            response.put("status", "error");
+	        }
+	        return ResponseEntity.ok(response);
+	    } catch (Exception e) {
+	        response.put("status", "error");
+	        response.put("message", "An error occurred: " + e.getMessage());
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+	    }
+	}
+	
+	@RequestMapping({"/register/submit","/forget/submit"})
 	public RedirectView  registerUser(@ModelAttribute UserModel user) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
