@@ -9,37 +9,32 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import com.docker.component.CustomAuthenticatorProvider;
 
-@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
-public class WebConfig extends WebSecurityConfigurerAdapter{
-@Autowired
-CustomAuthenticatorProvider authenticatorProvider;
+public class WebConfig extends WebSecurityConfigurerAdapter {
+    
+    @Autowired
+    private CustomAuthenticatorProvider authenticatorProvider;
 
-protected void configure(AuthenticationManagerBuilder build) {
-	build.authenticationProvider(authenticatorProvider);
-}
-@Override
-protected void configure(HttpSecurity http) throws Exception {
-    http
-        .csrf().disable()
-        .authorizeRequests()
-//            .antMatchers("/admin/**").hasRole("ADMIN")
-//            .antMatchers("/manager/**").hasRole("MANAGER")
-//            .antMatchers("/user/**").hasRole("USER")
-            .antMatchers("/m/**").permitAll()
-            .antMatchers("/register/**").permitAll()
-            .antMatchers("/forget/**").permitAll()
-            .antMatchers("/static/**").permitAll()
-            .anyRequest().authenticated()
-            .and()
-        .formLogin()
-            .loginPage("/login")
-            .permitAll()
-            .successForwardUrl("/loginSuccess")
-            .and()
-        .logout()
-            .permitAll();
-}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticatorProvider);
+    }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable()
+            .authorizeRequests()
+                .antMatchers("/m/**", "/register/**", "/forget/**", "/static/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .successForwardUrl("/loginSuccess")
+                .and()
+            .logout()
+                .permitAll();
+    }
 }

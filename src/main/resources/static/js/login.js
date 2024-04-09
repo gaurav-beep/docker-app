@@ -68,5 +68,15 @@
 	        validateForm();
 	    });
 	}
+	showPassword = () => {
+	    $("#showPassword").change((event) => {
+	        if ($(event.target).is(":checked")) {
+	            $("#password").attr("type", "text");
+	        } else {
+	            $("#password").attr("type", "password");
+	        }
+	    });
+	}
 	checkPassword();
 	checkUserName();
+	showPassword();

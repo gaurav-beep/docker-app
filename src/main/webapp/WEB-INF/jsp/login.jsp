@@ -37,6 +37,7 @@
 							<label for="password">Password</label> <input type="password"
 								class="form-control" id="password" name="password"
 								path="password" placeholder="Enter password" required disabled="true">
+								<input type="checkbox" id="showPassword"> Show Password
 								<p id="password-error" class="text-danger" style="font-size:small;"></p>
 						</div>
 					</div>
