@@ -44,19 +44,18 @@
 			        data: JSON.stringify(body),
 			        dataType: "json",
 			        success: function(response) {
-			            console.log(response);
 			            if (response.status == "success") {
 			            	$("#username-error").html("Username Alreday Taken.Try With Different Username.");
 			            } else {
 			            	$("#username-error").html("");
 			            }
+			            validateForm();
 			        },
 			        error: function(error) {
 			        	$("#username-error").html("Error While Getting Username.");
 			            console.log(error);
 			        }
 			    });
-			    validateForm();
 		});
 	}
 	showPassword = () => {

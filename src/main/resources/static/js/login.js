@@ -9,7 +9,6 @@
 			        data: JSON.stringify(body),
 			        dataType: "json",
 			        success: function(response) {
-			            console.log(response);
 			            if (response.status == "success") {
 			            	$("#username-error").html("");
 			            	$("#password").removeAttr("disabled");
@@ -21,20 +20,19 @@
 			            	$("#password").attr("disabled","disabled");
 			            	$("#password").val("");
 			            }
+			            validateForm();
 			        },
 			        error: function(error) {
 			        	$("#username-error").html("Error While Getting Username.");
 			            console.log(error);
 			        }
 			    });
-			    validateForm();
 		});
 	}
 	validateForm = () => {
 	    let checkusername = $('#username').val().trim().length > 0 && $('#username-error').html().trim().length == 0;
 	    let checkpassword = $('#password').val().trim().length > 0 && $('#password-error').html().trim().length == 0;
-	    console.log("checkusername:"+checkusername);
-	    console.log("checkpassword:"+checkpassword);
+	    console.log("password:"+$('#password').val().trim().length+","+$('#password-error').html());
 	    if (checkusername && checkpassword) {
 	        $("#loginSubmit").removeAttr("disabled");
 	    } else {
@@ -53,19 +51,19 @@
 		        data: JSON.stringify(body),
 		        dataType: "json",
 		        success: function(response) {
-		            console.log(response);
+		        	console.log("response : "+JSON.stringify(response));
 		            if (response.status == "success") {
 		            	$("#password-error").html("");
 		            } else {
 		            	$("#password-error").html("Incorrect Password.Try With Correct Password.");
 		            }
+		            validateForm();
 		        },
 		        error: function(error) {
 		        	$("#username-error").html("Error While Getting password.");
 		            console.log(error);
 		        }
 		    });
-	        validateForm();
 	    });
 	}
 	showPassword = () => {

@@ -44,7 +44,6 @@ checkConfirmPassword=()=>{
 			        data: JSON.stringify(body),
 			        dataType: "json",
 			        success: function(response) {
-			            console.log(response);
 			            if (response.status == "success") {
 			            	$("#forget-password-div").removeClass('d-none');
 			            	$("#username-error").html("");
@@ -52,6 +51,7 @@ checkConfirmPassword=()=>{
 			            	$("#username-error").html("Username Does Not Exists.");
 			            	$("#forget-password-div").addClass('d-none');
 			            }
+			            validateForm();
 			        },
 			        error: function(error) {
 			        	$("#forget-password-div").addClass('d-none');
@@ -59,7 +59,6 @@ checkConfirmPassword=()=>{
 			            console.log(error);
 			        }
 			    });
-			    validateForm();
 		});
 	}
 	showPassword = () => {
