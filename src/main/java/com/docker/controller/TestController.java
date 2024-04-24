@@ -48,9 +48,10 @@ public class TestController {
 	}
 	
 	@GetMapping("/home")
-	public String home(Model m) {
+	public ModelAndView home(Model m) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		return auth.getAuthorities().toString();
+		//return auth.getAuthorities().toString();
+		return new ModelAndView("home");
 	}
 	
 	@GetMapping("/m/dbstatus")
