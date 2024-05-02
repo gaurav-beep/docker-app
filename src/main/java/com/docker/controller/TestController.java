@@ -43,15 +43,8 @@ public class TestController {
 	@PostMapping("/loginSuccess")
 	public RedirectView login(Model m) {
 		RedirectView redirect = new RedirectView();
-		redirect.setUrl("/docker-app/home");
+		redirect.setUrl("http://localhost:3000/personal-info/home");
 		return redirect;
-	}
-	
-	@GetMapping("/home")
-	public ModelAndView home(Model m) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//return auth.getAuthorities().toString();
-		return new ModelAndView("home");
 	}
 	
 	@GetMapping("/m/dbstatus")
