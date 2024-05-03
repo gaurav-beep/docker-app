@@ -13,5 +13,5 @@ COPY src/main/webapp/WEB-INF/jsp/ /app/src/main/webapp/WEB-INF/jsp/
 # Expose the port that your application runs on
 EXPOSE 8090
 
-# Specify the command to run your application
-CMD ["java", "-Dspring.datasource.url=jdbc:mysql://monorail.proxy.rlwy.net:33620/user", "-Dspring.datasource.username=root", "-Dspring.datasource.password=FJksRduoAwdSrcVBdMneteLMDrakHEAS", "-Dspring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver", "-Dserver.servlet.context-path=/docker-app", "-Dspring.mvc.view.prefix=/WEB-INF/jsp/", "-Dspring.mvc.view.suffix=.jsp", "-Dspring.jpa.hibernate.ddl-auto=update", "-Dspring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect", "-Dspring.jpa.show-sql=true", "-Dspring.mvc.static-path-pattern=/static/**", "-Dspring.resources.static-locations=classpath:/static/", "-jar", "docker-app.jar"]
+# Command to run the application
+CMD ["java", "-jar", "docker-app.jar"]
