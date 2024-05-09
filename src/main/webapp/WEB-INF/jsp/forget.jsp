@@ -16,7 +16,7 @@
 			<!-- Modal content-->
 
 			<div class="modal-content">
-				<form action="submit" method="POST">
+				<form action="generateOtp" method="POST">
 					<div class="modal-header">
 					<h4 class="modal-title" style="text-align:center">Forget Password</h4>
 
@@ -27,21 +27,6 @@
 								class="form-control" id="username" name="username"
 								path="username" placeholder="Enter User Name">
 								<p id="username-error" class="text-danger" style="font-size:small;"></p>
-						</div>
-						<div id="forget-password-div" class="d-none">
-							<div class="form-group">
-								<label for="password">Password</label> <input type="password"
-									class="form-control" id="password" name="password"
-									path="password" placeholder="Enter password">
-									<input type="checkbox" id="showPassword"> Show Password
-								<p id="password-error" class="text-danger" style="font-size:small;"></p>
-							</div>
-							<div class="form-group">
-								<label for="confirmpassword">Confirm Password</label> <input type="password"
-									class="form-control" id="confirmpassword" name="confirmpassword"
-									placeholder="Enter Confirm password">
-									<p id="confirmpassword-error" class="text-danger" style="font-size:small;"></p>
-							</div>
 						</div>
 					</div>
 					<div class="modal-footer ">

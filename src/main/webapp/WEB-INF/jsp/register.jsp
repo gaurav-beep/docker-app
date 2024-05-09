@@ -14,7 +14,7 @@
 			<!-- Modal content-->
 
 			<div class="modal-content">
-				<form action="submit" method="POST">
+				<form action="generateOtp" method="POST">
 					<div class="modal-header">
 					<h4 class="modal-title" style="text-align:center">Register</h4>
 
