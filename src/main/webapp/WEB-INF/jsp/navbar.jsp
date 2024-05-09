@@ -36,10 +36,7 @@
         <a class="nav-link disabled">Disabled</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <button class="cursor-pointer bg-none bg-transparent text-white" onclick="window.location.replace('/docker-app/logout')"><i class="fa fa-sign-out fa-2x cursor-pointer" aria-hidden="true" ></i></button>
   </div>
 </nav>
 </body>
